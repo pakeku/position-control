@@ -20,9 +20,10 @@ export type UserProps = {
   name: string;
   role: string;
   status: string;
-  company: string;
+  department: string;
   avatarUrl: string;
   isVerified: boolean;
+  startDate: string;
 };
 
 type UserTableRowProps = {
@@ -62,7 +63,7 @@ export function UserTableRow({ row, selected, onSelectRow }: UserTableRowProps) 
           </Box>
         </TableCell>
 
-        <TableCell>{row.company}</TableCell>
+        <TableCell>{row.department}</TableCell>
 
         <TableCell>{row.role}</TableCell>
 
@@ -76,6 +77,14 @@ export function UserTableRow({ row, selected, onSelectRow }: UserTableRowProps) 
 
         <TableCell>
           <Label color={(row.status === 'banned' && 'error') || 'success'}>{row.status}</Label>
+        </TableCell>
+
+        <TableCell>
+          {new Date(row.startDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
         </TableCell>
 
         <TableCell align="right">
